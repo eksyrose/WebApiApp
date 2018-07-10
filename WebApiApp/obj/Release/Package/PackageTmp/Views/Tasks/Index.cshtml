@@ -9,6 +9,9 @@
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 
+
+@Html.Partial("Create", new WebApiApp.Tasks())
+
 <!-- modal placeholder-->
 <div id='myModal' class='modal fade in'>
     <div class="modal-dialog">
@@ -18,9 +21,7 @@
     </div>
 </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-default viewDialog", data_dialog_title = "Создание модели" })
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -60,6 +61,10 @@
 @section scripts
 {
     <script type="text/javascript">
+
+        function goBack() {
+            window.history.back();
+        }
 
         $(function () {
             $.ajaxSetup({ cache: false });
