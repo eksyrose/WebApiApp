@@ -10,7 +10,7 @@
 @Scripts.Render("~/bundles/modernizr")
 
 
-@Html.Partial("Create", new WebApiApp.Tasks())
+@Html.Partial("~/Views/Tasks/Create.cshtml", new WebApiApp.Tasks())
 
 <!-- modal placeholder-->
 <div id='myModal' class='modal fade in'>
