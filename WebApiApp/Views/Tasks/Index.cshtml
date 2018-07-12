@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<WebApiApp.Tasks>
 
 @{
-    ViewBag.Title = "Список задач";
+    ViewBag.Title = "Task list";
 }
 
-<h2>Список задач</h2>
+<h2>Task list</h2>
 
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
@@ -12,14 +12,14 @@
 
 @Html.Partial("~/Views/Tasks/Create.cshtml", new WebApiApp.Tasks())
 
-<!-- modal placeholder-->
+@* <!-- modal placeholder-->
 <div id='myModal' class='modal fade in'>
     <div class="modal-dialog">
         <div class="modal-content">
             <div id='myModalContent'></div>
         </div>
     </div>
-</div>
+</div> *@
 
 
 <table class="table">
@@ -68,7 +68,7 @@
             window.history.back();
         }
 
-        $(function () {
+     @*   $(function () {
             $.ajaxSetup({ cache: false });
             $(".btn btn -default viewDialog").click(function (e) {
 
@@ -78,7 +78,7 @@
                     $('#modDialog').modal('show');
                 });
             });
-        })
+        }) *@
     </script>
 }
 

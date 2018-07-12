@@ -128,11 +128,32 @@
     </div>  *@
 
 @section Scripts {
- @*   @Scripts.Render("~/bundles/jqueryval") *@
+    @Scripts.Render("~/bundles/jqueryval")
 
     <script type='text/javascript'>
         function goBack() {
             window.history.back();
         }
+
+        
     </script>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js">
+        $('#myModal').submit(function () {
+            var jqxhr = $.post('tasks/create', $('#myModal').serialize())
+                .success(function () {
+                    @*      var loc = jqxhr.getResponseHeader('Location');
+                    var a = $('<a/>', { href: loc, text: loc });
+                    $('#message').html(a); *@
+                })
+                .error(function () {
+                    $('#message').html("Error posting the update.");
+                });
+            return false;
+        });
+
+    </script>
+
+
+
 }

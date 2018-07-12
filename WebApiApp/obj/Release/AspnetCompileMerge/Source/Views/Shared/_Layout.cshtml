@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="/favicon.ico" rel="shortcut icon" runat="server" type="image/x-icon" />
+    <link href="/favicon.ico" rel="icon" runat="server" type="image/ico" />
 </head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <body>
@@ -22,7 +24,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Список задач", "Index", "Tasks", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Task list", "Index", "Tasks", new { area = "" }, null)</li>
                   @*  <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li> *@
                   @*  <li>@Html.ActionLink("A", "Create", "Tasks", new { area = "" }, null)</li> *@
                     
@@ -34,7 +36,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year </p>
         </footer>
     </div>
 
