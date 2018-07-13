@@ -1,63 +1,13 @@
 ﻿@model WebApiApp.Tasks
 
 @{
-    ViewBag.Title = "Create";
+                /**/
+
+                /**/
+
+                ViewBag.Title = "Create";
 }
 
-
-@* @using (Html.BeginForm())
-     {
-            @Html.AntiForgeryToken()
-
-     <div class="form-horizontal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button class="close" data-dismiss="modal" area-hidden="true" onclick='goBack()'>X</button>
-        </div>
-        <div class="modal-body">
-
-            <h1>Tasks</h1>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <br />
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.Status)
-                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
-            <br />
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                    <input type="reset" value="Cancel" onclick='goBack()' class="btn btn-default" />
-                </div>
-            </div>
-            <br />
-        </div>
-
-    </div>
-     }
-*@
 
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
     Create new task
@@ -72,9 +22,13 @@
                 <h4 class="modal-title" id="myModalLabel">Create</h4>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm())
+                @*      @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                    <div> *@
+                @using (Ajax.BeginForm("myModal", new AjaxOptions { @* UpdateTargetId = "results" *@}))
                 {
-                    @Html.AntiForgeryToken()
 
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
@@ -111,49 +65,53 @@
                         </div>
                     </div>
                     <br />
+                    @*   }
+                        </div> *@
+                    <div class="modal-footer">
+                       @* <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> *@
+                        @*   <button type="button" class="btn btn-primary">Save changes</button> *@
+                    </div>
+                    @*   </div>
+                            </div>
+                        </div> *@
+
+
+                    <br />
                 }
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
+  @*  <div id="results"></div> *@
 </div>
+    @Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+    @*       <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>  *@
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script type='text/javascript'>
+            function goBack() {
+                window.history.back();
+            }
 
 
-<br />
-@*       <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>  *@
+        </script> 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+           <script src="~/Scripts/jquery-1.10.2.min.js">
+                $('#myModal').submit(function () {
+                    var jqxhr = $.post('tasks/create', $('#myModal').serialize())
+                        .success(function () {
 
-    <script type='text/javascript'>
-        function goBack() {
-            window.history.back();
-        }
-
-        
-    </script>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js">
-        $('#myModal').submit(function () {
-            var jqxhr = $.post('tasks/create', $('#myModal').serialize())
-                .success(function () {
-                    @*      var loc = jqxhr.getResponseHeader('Location');
-                    var a = $('<a/>', { href: loc, text: loc });
-                    $('#message').html(a); *@
-                })
-                .error(function () {
-                    $('#message').html("Error posting the update.");
+                        })
+                        .error(function () {
+                            $('#message').html("Error posting the update.");
+                        });
+                    return false;
                 });
-            return false;
-        });
 
-    </script>
+            </script> 
 
-
-
-}
+    }
