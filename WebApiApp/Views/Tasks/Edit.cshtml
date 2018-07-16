@@ -5,19 +5,6 @@
 }
 
 
-
-@* @using (Html.BeginForm())
-     {
-            @Html.AntiForgeryToken()
-
-
-
-    <div class="modal-content">
-        <div class="modal-header">
-            <button class="close" data-dismiss="modal" area-hidden="true" onclick='goBack()'>X</button>
-        </div>
-        <div class="modal-body">
-            <h4>Edit the task</h4> *@
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#editModal">
     Edit task
 </button>
@@ -73,16 +60,12 @@
 }
             </div>
             <div class="modal-footer">
-              @*  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> *@
-             @*   <button type="button" class="btn btn-primary">Save changes</button> *@
+             
             </div>
         </div>
         </div>
     </div>
                 
-        @*  <div>
-                @Html.ActionLink("Back to List", "Index")
-            </div> *@
 
         @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
